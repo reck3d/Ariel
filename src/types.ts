@@ -1,0 +1,10 @@
+export type Role='user'|'assistant';export type Provider='openrouter'|'local';export type LocalAIState='stopped'|'starting'|'ready'|'error'|'crashed';
+export interface Message{id:string;role:Role;content:string;createdAt:number;truncated?:boolean;coding?:boolean}
+export interface Conversation{id:string;title:string;messages:Message[];createdAt:number;updatedAt:number}
+export interface LocalAISettings{executablePath:string;modelPath:string;contextSize:number;gpuLayers:number;normalMaxOutput:number;codeMaxOutput:number;port:number}
+export interface Settings{theme:'dark'|'light';provider:Provider;modelMode:'free'|'custom';customModel:string;localAI:LocalAISettings;hasApiKey:boolean;maskedApiKey?:string}
+export interface Memory{id:string;text:string;createdAt:number}
+export interface LocalAIStatus{state:LocalAIState;message:string;pid?:number;backend?:string;modelFilename?:string;modelSize?:number;startedAt?:number;readyAt?:number;crashLog?:string;previousCrashLog?:string}
+export type StreamEvent={type:'delta';text:string}|{type:'done';truncated?:boolean;coding?:boolean;finishReason?:string}|{type:'error';message:string};
+interface LocalAIBridge{selectExecutable:()=>Promise<string|null>;selectModel:()=>Promise<{path:string;size:number}|null>;start:()=>Promise<LocalAIStatus>;stop:()=>Promise<void>;getStatus:()=>Promise<LocalAIStatus>;getLogs:()=>Promise<string>;clearLogs:()=>Promise<void>;openLogFolder:()=>Promise<void>;exportLogs:()=>Promise<void>;onStatus:(cb:(s:LocalAIStatus)=>void)=>(()=>void);onLog:(cb:(line:string)=>void)=>(()=>void);onLogsCleared:(cb:()=>void)=>(()=>void)}
+declare global{interface Window{ariel:{windowAction:(a:'close'|'minimize'|'maximize')=>void;getSettings:()=>Promise<Settings>;saveSettings:(s:Partial<Settings>)=>Promise<Settings>;saveApiKey:(k:string)=>Promise<Settings>;removeApiKey:()=>Promise<Settings>;listChats:()=>Promise<Conversation[]>;saveChat:(c:Conversation)=>Promise<Conversation>;deleteChat:(id:string)=>Promise<void>;listMemories:()=>Promise<Memory[]>;streamChat:(id:string,m:Message[],cb:(e:StreamEvent)=>void,continuation?:boolean)=>(()=>void);localAI:LocalAIBridge}}}
