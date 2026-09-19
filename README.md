@@ -34,7 +34,7 @@ The manifest uses Electron 34, React 18, Vite 6, TypeScript 5, and electron-buil
 Replace the repository URL below with the URL of this repository after it is published:
 
 ```powershell
-git clone https://github.com/mortalboss124-ship-it/Ariel Ariel
+git clone https://github.com/reck3d/Ariel Ariel
 cd Ariel
 npm ci
 npm run dev
