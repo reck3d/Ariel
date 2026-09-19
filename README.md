@@ -4,7 +4,8 @@ Ariel is a lightweight desktop AI assistant with a playful personality, built wi
 
 ## Screenshots
 
-Screenshots will be added here. Capture a fresh empty conversation without personal messages, credentials, or local file paths before publishing images.
+<img width="1536" height="1024" alt="92388aa9-67d0-467b-a653-e8efe57e0951" src="https://github.com/user-attachments/assets/2cb66d41-ed66-499e-b6a9-c408dd0be96b" />
+<img width="1536" height="1024" alt="ChatGPT Image Sep 19, 2026, 01_57_16 PM" src="https://github.com/user-attachments/assets/4f2c7afd-5e79-4e2d-b576-92c6a7b20924" />
 
 ## Features
 
